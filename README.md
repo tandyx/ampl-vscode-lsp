@@ -1,8 +1,8 @@
 # ampl language server & vscode extension
 
-## building:
+## building
 
 ```bash
-pip install -r requirements.txt -t ./bundled/libs
+cd server && pip install -r requirements.txt -t ./libs && cd ..
 npm install
 ```

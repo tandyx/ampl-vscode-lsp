@@ -8,20 +8,13 @@ import runpy
 import sys
 
 
-def update_sys_path(path_to_add: str) -> None:
-    """Add given path to `sys.path`.""" 
-    if path_to_add not in sys.path and os.path.isdir(path_to_add):
-        sys.path.append(path_to_add)
-
-
 # Ensure debugger is loaded before we load anything else, to debug initialization.
 debugger_path = os.getenv("DEBUGPY_PATH", None)
 if debugger_path:
     if debugger_path.endswith("debugpy"):
         debugger_path = os.fspath(pathlib.Path(debugger_path).parent)
-
-    update_sys_path(debugger_path)
-
+    if debugger_path not in sys.path and os.path.isdir(debugger_path):
+        sys.path.append(debugger_path)
     # pylint: disable=wrong-import-position,import-error
     import debugpy
 

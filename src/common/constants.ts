@@ -10,7 +10,7 @@ export const EXTENSION_ROOT_DIR =
     : path.dirname(__dirname);
 export const BUNDLED_PYTHON_SCRIPTS_DIR = path.join(
   EXTENSION_ROOT_DIR,
-  "bundled"
+  "server"
 );
 export const SERVER_SCRIPT_PATH = path.join(
   BUNDLED_PYTHON_SCRIPTS_DIR,

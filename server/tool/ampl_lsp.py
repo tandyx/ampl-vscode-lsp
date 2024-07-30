@@ -5,10 +5,9 @@ import os
 import pathlib
 import sys
 import traceback
-import re
 import typing as t
 
-from . import ampl
+import ampl_utils
 import utils
 
 
@@ -56,16 +55,15 @@ class AMPLServer(server.LanguageServer):
         """
         self.show_message_log(message, msg_type or self.LOG_TYPE)
 
-    def parse(self, doc: workspace.TextDocument) -> None:
+    def parse(self, doc: workspace.TextDocument) -> dict[str, dict[str, lsp.Range]]:
         """parses a document and adds it results to `self.index`;
 
         args:
             - `doc (workspace.TextDocument)`: document to parse
         """
-        # self.index_: dict[str, dict[str, lsp.Range]] = {}
         self.index_ = {}
         for linum, line in enumerate(doc.lines):
-            for _cls in (ampl.AMPLType, ampl.AMPLFunction):
+            for _cls in (ampl_utils.AMPLType, ampl_utils.AMPLFunction):
                 if _cls.name not in self.index_:
                     self.index_[_cls.name] = {}
                 if (match := _cls.regex.match(line)) is None:
@@ -77,6 +75,7 @@ class AMPLServer(server.LanguageServer):
                     end=lsp.Position(line=linum, character=start_char + len(name)),
                 )
         self.log("Index: %s", self.index_)
+        return self.index_
 
     def get_global_defaults(self) -> dict[str, t.Any]:
         """get global settings

@@ -1,7 +1,4 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
 """Light-weight JSON-RPC over standard IO."""
-
 
 import atexit
 import contextlib

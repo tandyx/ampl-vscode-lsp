@@ -13,7 +13,6 @@ utils.update_sys_path(
     os.getenv("LS_IMPORT_STRATEGY", "useBundled"),
 )
 
-helpp = "dasdas"
 
 RPC = utils.create_json_rpc(sys.stdin.buffer, sys.stdout.buffer)
 
