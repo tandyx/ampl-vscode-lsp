@@ -20,6 +20,8 @@ utils.update_sys_path(
 import lsprotocol.types as lsp
 from pygls import server, uris, workspace
 
+IndexType = dict[str, dict[str, dict[str, lsp.Range]]]
+
 
 class AMPLServer(server.LanguageServer):
     """AMPL Language Server implementation."""
@@ -41,7 +43,7 @@ class AMPLServer(server.LanguageServer):
         self.module: str = module
         self.name: str = name
         self.tool_args: list[str] = tool_args
-        self.index_: dict[str, dict[str, lsp.Range]] = {}
+        self.index_: IndexType = {}
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.module!r}, {self.name!r})"
@@ -55,22 +57,25 @@ class AMPLServer(server.LanguageServer):
         """
         self.show_message_log(message, msg_type or self.LOG_TYPE)
 
-    def parse(self, doc: workspace.TextDocument) -> dict[str, dict[str, lsp.Range]]:
+    def parse_document(self, doc: workspace.TextDocument) -> IndexType:
         """parses a document and adds it results to `self.index`;
 
         args:
             - `doc (workspace.TextDocument)`: document to parse
+        returns:
+            - `dict`: index of the document
         """
-        self.index_ = {}
+        if doc.uri not in self.index_:
+            self.index_[doc.uri] = {}
         for linum, line in enumerate(doc.lines):
-            for _cls in (ampl_utils.AMPLType, ampl_utils.AMPLFunction):
-                if _cls.name not in self.index_:
-                    self.index_[_cls.name] = {}
+            for _cls in (ampl_utils.Variable, ampl_utils.Function):
+                if _cls.type_name not in self.index_:
+                    self.index_[doc.uri][_cls.type_name] = {}
                 if (match := _cls.regex.match(line)) is None:
                     continue
                 name: str = match.group(1)
                 start_char: int = match.start() + line.find(name)
-                self.index_[_cls.name][name] = lsp.Range(
+                self.index_[doc.uri][_cls.type_name][name] = lsp.Range(
                     start=lsp.Position(line=linum, character=start_char),
                     end=lsp.Position(line=linum, character=start_char + len(name)),
                 )
