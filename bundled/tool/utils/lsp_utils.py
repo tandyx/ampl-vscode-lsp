@@ -13,7 +13,6 @@ import sys
 import threading
 from typing import Any, Callable, Sequence
 
-
 # Save the working directory used when loading this module
 SERVER_CWD = os.getcwd()
 CWD_LOCK = threading.Lock()

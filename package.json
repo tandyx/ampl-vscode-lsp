@@ -54,6 +54,16 @@
         "vsce-package": "vsce package -o ampl-lsp.vsix"
     },
     "contributes": {
+        "languages": [
+            {
+                "id": "ampl",
+                "extensions": [
+                    ".mod",
+                    ".dat",
+                    ".run"
+                ]
+            }
+        ],
         "configuration": {
             "properties": {
                 "ampl-lsp.args": {
@@ -114,6 +124,24 @@
                     ],
                     "scope": "machine",
                     "type": "string"
+                },
+                "ampl.pathToExecutable": {
+                    "type": "string",
+                    "scope": "machine",
+                    "default": "",
+                    "description": "Specifies the path to the AMPL command executable. By default, the extension will look for the executable in the system's PATH."
+                },
+                "ampl.useRelativePath": {
+                    "type": "boolean",
+                    "scope": "machine",
+                    "default": true,
+                    "description": "Whether to use a relative path to files when running in the console."
+                },
+                "ampl.exeArgs": {
+                    "type": "array",
+                    "scope": "machine",
+                    "default": [],
+                    "description": "an array of exe args to AMPL's executable when the console is opened."
                 }
             }
         },
@@ -122,16 +150,70 @@
                 "title": "Restart Server",
                 "category": "AMPL LSP",
                 "command": "ampl-lsp.restart"
+            },
+            {
+                "command": "ampl.openConsole",
+                "title": "AMPL: Open Console",
+                "icon": "$(terminal)"
+            },
+            {
+                "command": "ampl.runFile",
+                "title": "AMPL: Include File",
+                "icon": "$(play)",
+                "enablement": "editorLangId == ampl"
+            },
+            {
+                "command": "ampl.solve",
+                "title": "AMPL: Solve",
+                "icon": "$(play)",
+                "shortTitle": "Solve",
+                "enablement": "editorLangId == ampl"
+            },
+            {
+                "command": "ampl.reset",
+                "title": "AMPL: Reset",
+                "icon": "$(trash)",
+                "shortTitle": "Reset",
+                "enablement": "editorLangId == ampl"
             }
         ],
-        "languages": [
+        "keybindings": [
             {
-                "id": "ampl",
-                "extensions": [
-                    ".mod",
-                    ".dat",
-                    ".run"
-                ]
+                "command": "ampl.runFile",
+                "key": "ctrl+enter",
+                "mac": "cmd+enter",
+                "when": "editorTextFocus && editorLangId == 'ampl'"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "ampl.runFile",
+                    "title": "AMPL: Include File",
+                    "when": "editorTextFocus && editorLangId == ampl"
+                }
+            ],
+            "editor/title/run": [
+                {
+                    "command": "ampl.runFile",
+                    "group": "navigation",
+                    "when": "editorLangId == ampl"
+                }
+            ]
+        },
+        "terminal": {
+            "profiles": [
+                {
+                    "id": "ampl.shell",
+                    "title": "AMPL"
+                }
+            ]
+        },
+        "grammars": [
+            {
+                "language": "ampl",
+                "scopeName": "source.ampl",
+                "path": "./resources/AMPL.tmLanguage.json"
             }
         ]
     },

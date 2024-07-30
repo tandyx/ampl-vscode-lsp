@@ -1,10 +1,14 @@
+"""ampl language server class to hide junk from the user."""
+
+import copy
 import os
 import pathlib
-import typing as t
 import sys
-import copy
 import traceback
+import re
+import typing as t
 
+from . import ampl
 import utils
 
 
@@ -38,6 +42,7 @@ class AMPLServer(server.LanguageServer):
         self.module: str = module
         self.name: str = name
         self.tool_args: list[str] = tool_args
+        self.index_: dict[str, dict[str, lsp.Range]] = {}
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.module!r}, {self.name!r})"
@@ -50,6 +55,28 @@ class AMPLServer(server.LanguageServer):
             - `msg_type (lsp.MessageType)`: message type
         """
         self.show_message_log(message, msg_type or self.LOG_TYPE)
+
+    def parse(self, doc: workspace.TextDocument) -> None:
+        """parses a document and adds it results to `self.index`;
+
+        args:
+            - `doc (workspace.TextDocument)`: document to parse
+        """
+        # self.index_: dict[str, dict[str, lsp.Range]] = {}
+        self.index_ = {}
+        for linum, line in enumerate(doc.lines):
+            for _cls in (ampl.AMPLType, ampl.AMPLFunction):
+                if _cls.name not in self.index_:
+                    self.index_[_cls.name] = {}
+                if (match := _cls.regex.match(line)) is None:
+                    continue
+                name: str = match.group(1)
+                start_char: int = match.start() + line.find(name)
+                self.index_[_cls.name][name] = lsp.Range(
+                    start=lsp.Position(line=linum, character=start_char),
+                    end=lsp.Position(line=linum, character=start_char + len(name)),
+                )
+        self.log("Index: %s", self.index_)
 
     def get_global_defaults(self) -> dict[str, t.Any]:
         """get global settings

@@ -1,7 +1,4 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
 """Implementation of tool support over LSP."""
-from __future__ import annotations
 
 import json
 import os
@@ -9,25 +6,21 @@ import pathlib
 import sys
 import typing as t
 
-
 import utils
-import ampl_lsp
 
+utils.update_sys_path(
+    os.fspath(pathlib.Path(__file__).parent.parent / "libs"),
+    os.getenv("LS_IMPORT_STRATEGY", "useBundled"),
+)
 
-# Ensure that we can import LSP libraries, and other bundled libraries.
-
-
-# **********************************************************
-# Imports needed for the language server goes below this.
-# **********************************************************
-# pylint: disable=wrong-import-position,import-error
 import lsprotocol.types as lsp
+from ampl_lsp import AMPLServer
 
 RUNNER = pathlib.Path(__file__).parent / "lsp_runner.py"
 
 TOOL_ARGS = []  # default arguments always passed to your tool.
 
-LSP_SERVER = ampl_lsp.AMPLServer(
+LSP_SERVER = AMPLServer(
     module="ampl-lsp", name="ampl language server", tool_args=TOOL_ARGS, version="0.1.0"
 )
 
@@ -90,6 +83,23 @@ def completions(params: lsp.CompletionParams) -> lsp.CompletionList:
         lsp.CompletionItem(label="world"),
         lsp.CompletionItem(label="friend"),
     ]
+
+
+@LSP_SERVER.feature(lsp.TEXT_DOCUMENT_HOVER)
+def hover(params: lsp.TextDocumentPositionParams) -> lsp.Hover | None:
+    """LSP handler for textDocument/hover request."""
+    document = LSP_SERVER.workspace.get_document(params.text_document.uri)
+    current_line = document.lines[params.position.line].strip()
+    if not current_line.endswith("hello."):
+        return None
+    return lsp.Hover(
+        contents=[
+            lsp.MarkedString(
+                language="markdown",
+                value="This is a hover message for `hello`.",
+            )
+        ]
+    )
 
 
 @LSP_SERVER.feature(lsp.TEXT_DOCUMENT_DEFINITION)

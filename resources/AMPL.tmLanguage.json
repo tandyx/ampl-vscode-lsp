@@ -53,10 +53,6 @@
                 },
                 {
                     "include": "#pseudoconstant"
-                },
-                {
-                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
-                    "name": "variable.other.ampl"
                 }
             ]
         },
@@ -141,7 +137,7 @@
             "name": "variable.suffix.ampl",
             "match": "^\\.(?:[as]?status|defeqn|defvar|exitcode|message|result|lb[012s]?|ub[012s]?|[ul]?rc|val|init0?|body|dinit0?|[ul]?dual|[ul]?slack)|(<<|>>)"
         },
-        "operator": {
+        "operator": {       
             "name": "keyword.operator.ampl",
             "match": "(\\+|-|\\*|\\/|\\*\\*|=|<=?|>=?|==|\\||\\^|<|>|!|mod|\\.\\.|:=|&|!=|:|/)"
         },
