@@ -1,0 +1,213 @@
+{
+    "Constraint": {
+        "body": [
+            "subject to ${1:constraint_name} {i in ${2:SET1}}:",
+            "\tsum{j in ${3:SET2}} ${4:variable_name}[i,j] <= ${5:param_name}[i]",
+            ";"
+        ],
+        "description": "adds a constraint to the model",
+        "prefix": [
+            "subject to"
+        ]
+    },
+    "For Loop": {
+        "body": [
+            "for {i in ${1:SET}} {",
+            "\t$0",
+            "};"
+        ],
+        "description": "iterate over the elements of a set",
+        "prefix": [
+            "for"
+        ]
+    },
+    "If Statement": {
+        "body": [
+            "if ${1:condition} then {",
+            "\t$0",
+            "} else {",
+            "\t",
+            "};"
+        ],
+        "prefix": [
+            "if"
+        ]
+    },
+    "Maximize": {
+        "body": [
+            "maximize objective_name:",
+            "\tsum{i in ${1:SET}} ${2:variable_name}[i]",
+            ";"
+        ],
+        "description": "maximization objective function",
+        "prefix": [
+            "maximize"
+        ]
+    },
+    "Minimize": {
+        "body": [
+            "minimize Objective:",
+            "\tsum{i in ${1:SET}} ${2:variable_name}[i]",
+            ";"
+        ],
+        "description": "minimization objective function",
+        "prefix": [
+            "minimize"
+        ]
+    },
+    "Param Array": {
+        "body": [
+            "param ${1:name} :=",
+            "${2:element} ${3:value}",
+            ";"
+        ],
+        "description": "The data for an indexed parameter",
+        "prefix": [
+            "param"
+        ]
+    },
+    "Param Data Table": {
+        "body": [
+            "param ${1:name} :",
+            "\t\t\t${2:element1}\t${3:element2} :=",
+            "${4:element3}\t${5:value1}\t\t${6:value2}",
+            ";"
+        ],
+        "description": "Simple table layout",
+        "prefix": [
+            "param"
+        ]
+    },
+    "Param Declaration": {
+        "body": [
+            "param ${1:name} {${2:SET}};"
+        ],
+        "description": "Declares a parameter",
+        "prefix": [
+            "param"
+        ]
+    },
+    "Param Multiple": {
+        "body": [
+            "param: ${1:name1} ${2:name2} :=",
+            "${3:element} ${4:value1} ${5:value2}",
+            ";"
+        ],
+        "description": "Defines several indexed parameters over the same set",
+        "prefix": [
+            "param"
+        ]
+    },
+    "Param Scalar": {
+        "body": [
+            "param ${1:name} := ${2:value};"
+        ],
+        "description": "The data for a single parameter",
+        "prefix": [
+            "param"
+        ]
+    },
+    "Repeat Until Loop": {
+        "body": [
+            "repeat {",
+            "\t$0",
+            "} until ${1:condition};"
+        ],
+        "prefix": [
+            "repeat",
+            "until"
+        ]
+    },
+    "Repeat While Loop": {
+        "body": [
+            "repeat {",
+            "\t$0",
+            "} while ${1:condition};"
+        ],
+        "prefix": [
+            "repeat",
+            "while"
+        ]
+    },
+    "Set Data": {
+        "body": [
+            "set ${1:SET} := ${2:element};"
+        ],
+        "description": "The data for a set",
+        "prefix": [
+            "set"
+        ]
+    },
+    "Set Declaration": {
+        "body": [
+            "set ${1:SET_NAME};"
+        ],
+        "description": "Declares a set",
+        "prefix": [
+            "set"
+        ]
+    },
+    "Until Loop": {
+        "body": [
+            "repeat until ${1:condition} {",
+            "\t$0",
+            "};"
+        ],
+        "prefix": [
+            "repeat",
+            "until"
+        ]
+    },
+    "Variable": {
+        "body": [
+            "var ${1:name} {i in ${2:SET}};"
+        ],
+        "description": "Simple variable definition",
+        "prefix": [
+            "var"
+        ]
+    },
+    "While Loop": {
+        "body": [
+            "repeat while ${1:condition} {",
+            "\t$0",
+            "};"
+        ],
+        "prefix": [
+            "repeat",
+            "while"
+        ]
+    },
+    "Arc": {
+        "body": [
+            "arc ${1:Name} {(i,j) in ${2:SET}} >= ${3:lower}, <= ${4:upper},",
+            "\tfrom ${5:from_node}[i], to ${6:to_node}[j], obj ${7:objective_name} ${8:cost}[i,j];"
+        ],
+        "description": "declare an arc in a network model",
+        "prefix": [
+            "arc"
+        ]
+    },
+    "Block Comment": {
+        "body": [
+            "$BLOCK_COMMENT_START*",
+            " * $0",
+            " $BLOCK_COMMENT_END"
+        ],
+        "description": "Block comment",
+        "prefix": [
+            "comment",
+            "block_comment",
+            "/**"
+        ]
+    },
+    "Function": {
+        "body": [
+            "function ${1:name} {${2:domain}} - ${3:spec} ${4:type} ${5:pipe} ${6:litseq} ${7:format} ${8:fmt};"
+        ],
+        "description": "declare a function -- imported from the GAMS language package.",
+        "prefix": [
+            "function"
+        ]
+    }
+}

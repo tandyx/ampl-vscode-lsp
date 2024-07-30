@@ -1,0 +1,1844 @@
+[
+    {
+        "datatype": "float",
+        "description": "elapsed seconds since the start of the AMPL process",
+        "name": "_ampl_elapsed_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "names of all variables",
+        "name": "_varname",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set",
+        "description": "set of all declared variables",
+        "name": "_var",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "system CPU seconds used by the AMPL process itself",
+        "name": "_ampl_system_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "`_ampl_system_time + _ampl_user_time`",
+        "name": "_ampl_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "user CPU seconds used by the AMPL process itself",
+        "name": "_ampl_user_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared constraint names",
+        "name": "_CONS",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set",
+        "description": "synonyms for constraints in current model ",
+        "name": "_con",
+        "type": "constant",
+        "example": "for {i in 1.._ncons} { _conname[i], _con[i] }"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared environment names",
+        "name": "_ENVS",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[object]",
+        "description": "set of all declared user-defined functions",
+        "name": "_FUNCS",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of complementarity constraints before presolve",
+        "name": "_nccons",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared index names",
+        "name": "_conname",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of constraints in current model",
+        "name": "_ncons",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of objectives in current model",
+        "name": "_nobjs",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "names of objectives in current model",
+        "name": "_objname",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared objective names",
+        "name": "_OBJS",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[object]",
+        "description": "synonyms for objectives in current model",
+        "name": "_obj",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared parameter names",
+        "name": "_PARS",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared problem names",
+        "name": "_PROBS",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set",
+        "description": "if _scvar[i] > 0, _svar[scvar[i]] complements _scon[i]",
+        "name": "_scvar",
+        "type": "constant"
+    },
+    {
+        "datatype": "Set[string]",
+        "description": "set of all declared set names",
+        "name": "_SETS",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "elapsed seconds for most recent shell command",
+        "name": "_shell_elapsed_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "system CPU seconds used by most recent shell command",
+        "name": "_shell_system_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "`_shell_system_time + _shell_user_time`",
+        "name": "_shell_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "user CPU seconds used by most recent shell command",
+        "name": "_shell_user_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of binary (0,1) variables",
+        "name": "_snbvars",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of complementarity constraints after presolve",
+        "name": "_snccons",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of general integer variables (excluding binaries)",
+        "name": "_snivars",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of linear complementarity constraints",
+        "name": "_snlcc",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of linear network constraints",
+        "name": "_snlnc",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of nonlinear compl. \n ```ampl \nconstrs.: _snccons = _snlcc + _snnlcc\n```",
+        "name": "_snnlcc",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of nonlinear constraints",
+        "name": "_snnlcons",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of nonlinear network constraints",
+        "name": "_snnlnc",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of nonlinear objectives",
+        "name": "_snnlobjs",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of nonlinear variables",
+        "name": "_snnlv",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of constraint Jacobian matrix nonzeros",
+        "name": "_snzcons",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of objective gradient nonzeros",
+        "name": "_snzobjs",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "elapsed seconds for most recent solve command",
+        "name": "_solve_elapsed_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "system CPU seconds used by most recent solve command",
+        "name": "_solve_system_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "_solve_system_time + _solve_user_time",
+        "name": "_solve_time",
+        "type": "constant"
+    },
+    {
+        "description": "",
+        "name": "to",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "from",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "user CPU seconds used by most recent solve command",
+        "name": "_solve_user_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "elapsed seconds used by all shell commands",
+        "name": "_total_shell_elapsed_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "system CPU seconds used by all shell commands",
+        "name": "_total_shell_system_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "`_total_shell_system_time` + `_total_shell_user_time`",
+        "name": "_total_shell_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "user CPU seconds used by all shell commands",
+        "name": "_total_shell_user_time",
+        "type": "constant"
+    },
+    {
+        "description": "",
+        "name": "obj",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "elapsed seconds used by all solve commands",
+        "name": "_total_solve_elapsed_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "system CPU seconds used by all solve commands",
+        "name": "_total_solve_system_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "`_total_solve_system_time` + `_total_solve_user_time`",
+        "name": "_total_solve_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "user CPU seconds used by all solve commands",
+        "name": "_total_solve_user_time",
+        "type": "constant"
+    },
+    {
+        "datatype": "int",
+        "description": "number of variables in current model",
+        "name": "_nvars",
+        "type": "constant"
+    },
+    {
+        "datatype": "float",
+        "description": "absolute value `x`",
+        "example": "",
+        "name": "abs",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse cosine, `cos^-1`",
+        "example": "",
+        "name": "acos",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse hyperbolic cosine,cosh^-1",
+        "example": "",
+        "name": "acosh",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "object",
+        "description": "returns alias of model entity `v`",
+        "example": "",
+        "name": "alias",
+        "parameters": [
+            {
+                "description": "object to alias",
+                "name": "v",
+                "type": "object"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "all",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "and",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "arc",
+        "type": "declaration"
+    },
+    {
+        "datatype": "int",
+        "description": "arity of `S` if `S` is a set, else 0; for use with `_SETS`",
+        "example": "",
+        "name": "arity",
+        "parameters": [
+            {
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse sine\n\n`sin(x)^-1`",
+        "example": "",
+        "name": "asin",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse hyperbolic sine\n\n`sinh(x)^-1` ",
+        "example": "",
+        "name": "asinh",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse tangent,tan^-1 ",
+        "example": "",
+        "name": "atan",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse tangent\n\n`tan^-1(y/x)`",
+        "example": "",
+        "name": "atan2",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "numeric"
+            },
+            {
+                "description": "real number",
+                "name": "y",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "inverse hyperbolic tangent\n\n`tanh(x)^-1`",
+        "example": "",
+        "name": "atanh",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Beta distribution.\n\n `density(x) = x a^-1 ( 1^-x) b^-1 /(gamma(a) gamma(b)/gamma(a + b) ); x in [ 0 , 1 ]`",
+        "example": "",
+        "name": "Beta",
+        "parameters": [
+            {
+                "name": "a",
+                "type": "float",
+                "description": "shape parameter 1"
+            },
+            {
+                "name": "b",
+                "type": "float",
+                "description": "shape parameter 2"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "binary",
+        "type": "type"
+    },
+    {
+        "description": "",
+        "name": "break",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "by",
+        "type": "keyword"
+    },
+    {
+        "description": "invoke imported function",
+        "name": "call",
+        "type": "keyword"
+    },
+    {
+        "datatype": "int",
+        "description": "Operates on any finite set: `card(sexpr)` returns the number of members in _sexpr_. If _sexpr_ is an indexing expression, the parentheses may be omitted",
+        "example": "card({i in A: x[i] >= 4}) # int",
+        "name": "card",
+        "parameters": [
+            {
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Cauchy distribution.\n\n `density(x) = 1/(pi( 1 + x 2 ) )`",
+        "example": "",
+        "name": "Cauchy",
+        "parameters": [],
+        "type": "function"
+    },
+    {
+        "description": "change current directory",
+        "name": "cd",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "ceiling of `x` (next higher integer)",
+        "example": "",
+        "name": "ceil",
+        "parameters": [
+            {
+                "description": "real number",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "string",
+        "description": "string representation of character `n`; inverse of `ichar`",
+        "example": "",
+        "name": "char",
+        "parameters": [
+            {
+                "description": "integer to convert",
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "perform all check commands",
+        "name": "check",
+        "type": "keyword"
+    },
+    {
+        "description": "close file",
+        "name": "close",
+        "type": "keyword"
+    },
+    {
+        "description": "read and interpret commands from a file",
+        "name": "commands",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "complements",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "contains",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "continue",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns the cosine of `x`.",
+        "example": "",
+        "name": "cos",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "cross",
+        "type": "keyword"
+    },
+    {
+        "datatype": "string",
+        "description": "time `t` as a string",
+        "example": "display ctime(); #'Wed Feb 28 09:50:48 2024'",
+        "name": "ctime",
+        "parameters": [
+            {
+                "default": null,
+                "description": "time - leave blank for current time",
+                "name": "t",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "Current",
+        "type": "keyword"
+    },
+    {
+        "description": "switch to data mode; optionally include file contents",
+        "name": "data",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "default",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "net_in",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "net_out",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "to_come",
+        "type": "keyword"
+    },
+    {
+        "description": "delete model entities",
+        "name": "delete",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "diff",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "difference",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "dimen",
+        "type": "keyword"
+    },
+    {
+        "description": "print model entities and expressions;\n\n also see csvdisplay and _display",
+        "name": "display",
+        "type": "keyword"
+    },
+    {
+        "name": "csvdisplay",
+        "type": "keyword",
+        "description": ""
+    },
+    {
+        "name": "_display",
+        "type": "keyword",
+        "description": ""
+    },
+    {
+        "description": "",
+        "name": "div",
+        "type": "keyword"
+    },
+    {
+        "description": "drop a constraint or objective",
+        "name": "drop",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "else",
+        "type": "keyword"
+    },
+    {
+        "description": "end input from current input file",
+        "name": "end",
+        "type": "keyword"
+    },
+    {
+        "description": "set environment for a problem instance",
+        "name": "environ",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "exists",
+        "type": "keyword"
+    },
+    {
+        "description": "exit AMPL with status value",
+        "name": "exit",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns `e^x`",
+        "example": "",
+        "name": "exp",
+        "parameters": [
+            {
+                "description": "power to raise `e` to",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "show expansion of model entities",
+        "name": "expand",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from an Exponential distribution.\n\n `density(x) = e^-x; x>=0`",
+        "example": "",
+        "name": "Exponential",
+        "parameters": [],
+        "type": "function"
+    },
+    {
+        "datatype": "any",
+        "description": "first member of parameter set `S`",
+        "example": "",
+        "name": "first",
+        "parameters": [
+            {
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "freeze a variable at its current value",
+        "name": "fix",
+        "type": "keyword"
+    },
+    {
+        "datatype": "int",
+        "description": "floor of `x` (next lower integer)",
+        "example": "",
+        "name": "floor",
+        "parameters": [
+            {
+                "description": "number to floor",
+                "name": "x",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "for",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "forall",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Gamma distribution.\n\n `density(x) = x a^-1 e^-x / gamma(a), x>=0`",
+        "example": "",
+        "name": "Gamma",
+        "parameters": [
+            {
+                "name": "a",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "string",
+        "description": "substitute repl for all occurrences of regular expression `re` in `s`",
+        "example": "",
+        "name": "gsub",
+        "parameters": [
+            {
+                "description": "string to test",
+                "name": "s",
+                "type": "string"
+            },
+            {
+                "description": "regular expression",
+                "name": "re",
+                "type": "string"
+            },
+            {
+                "description": "replacement string",
+                "name": "repl",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "int",
+        "description": "Unicode value of the first character in string s",
+        "example": "",
+        "name": "ichar",
+        "parameters": [
+            {
+                "description": "string to convert",
+                "name": "s",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "if",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "IN",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "in",
+        "type": "keyword"
+    },
+    {
+        "description": "include file contents",
+        "name": "include",
+        "type": "keyword"
+    },
+    {
+        "datatype": "int",
+        "description": "arity of entity `E`'s indexing set card, arity, and indexarity also apply to unordered sets",
+        "example": "",
+        "name": "indexarity",
+        "parameters": [
+            {
+                "description": "entity",
+                "name": "E",
+                "type": "any"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "ordered by",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "circular by",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "Initial",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "initial",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "INOUT",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "integer",
+        "type": "type"
+    },
+    {
+        "description": "",
+        "name": "inter",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "intersect",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "intersection",
+        "type": "keyword"
+    },
+    {
+        "datatype": "int",
+        "description": "Returns a random integer in the range [0, 224).",
+        "example": "",
+        "name": "Irand224",
+        "parameters": [],
+        "type": "function"
+    },
+    {
+        "datatype": "any",
+        "description": "returns the last member of `S`",
+        "example": "",
+        "name": "last",
+        "parameters": [
+            {
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "int",
+        "description": "returns the length of string `s`",
+        "example": "",
+        "name": "length",
+        "parameters": [
+            {
+                "description": "string to test",
+                "name": "s",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "less",
+        "type": "keyword"
+    },
+    {
+        "description": "change data values",
+        "name": "let",
+        "type": "keyword"
+    },
+    {
+        "description": "load dynamic function library",
+        "name": "load",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "LOCAL",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "local",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "returns the natural log of `x`",
+        "example": "",
+        "name": "log",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "returns the base 10 logarithm of `x`",
+        "example": "",
+        "name": "log10",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "logical",
+        "type": "keyword"
+    },
+    {
+        "datatype": "string",
+        "description": "starting position of regular expression `re` in `s`, or 0 if not found",
+        "example": "",
+        "name": "match",
+        "parameters": [
+            {
+                "description": "string to test",
+                "name": "s",
+                "type": "string"
+            },
+            {
+                "description": "regular expression",
+                "name": "re",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "numeric",
+        "description": "maximum (2 or more arguments)",
+        "example": "",
+        "name": "max",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            },
+            {
+                "description": "",
+                "name": "y",
+                "type": "numeric"
+            },
+            {
+                "description": "",
+                "name": "...",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "maximize",
+        "type": "declaration"
+    },
+    {
+        "datatype": "any",
+        "description": "_jth_ member of `S`; `1 <= j <= card(S), j: int`",
+        "example": "",
+        "name": "member",
+        "parameters": [
+            {
+                "description": "set to index",
+                "name": "S",
+                "type": "Set"
+            },
+            {
+                "description": "position of member, 1 <= j <= card(S)",
+                "name": "j",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "minimum (2 or more arguments)",
+        "example": "",
+        "name": "min",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            },
+            {
+                "description": "",
+                "name": "y",
+                "type": "numeric"
+            },
+            {
+                "description": "",
+                "name": "...",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "minimize",
+        "type": "declaration"
+    },
+    {
+        "description": "switch to model mode; optionally include file contents",
+        "name": "model",
+        "type": "keyword"
+    },
+    {
+        "datatype": "any",
+        "description": "next member of `set` for which `e` is a dummy index",
+        "example": "",
+        "name": "next",
+        "parameters": [
+            {
+                "description": "dummy index...?",
+                "name": "e",
+                "type": "object"
+            },
+            {
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            },
+            {
+                "default": 1,
+                "description": "int",
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "any",
+        "description": "wrapping version of `next`",
+        "example": "",
+        "name": "nextw",
+        "parameters": [
+            {
+                "description": "object",
+                "name": "e",
+                "type": "object"
+            },
+            {
+                "default": null,
+                "name": "S",
+                "type": "Set"
+            },
+            {
+                "default": 1,
+                "description": "int",
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "node",
+        "type": "declaration"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Normal distribution. \n\n `density(x) = e^-(x-avg)^2/(2*std^2) / (std*sqrt(2*pi))`",
+        "example": "",
+        "name": "Normal",
+        "parameters": [
+            {
+                "name": "avg",
+                "type": "float"
+            },
+            {
+                "name": "std",
+                "type": "float"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Normal distribution with mean 0 and standard deviation 1. \n\n `density(x) = e^-(x-0)^2/(2*1^2) / (1*sqrt(2*pi))`",
+        "example": "",
+        "name": "Normal01",
+        "parameters": [],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "not",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "notin",
+        "type": "keyword"
+    },
+    {
+        "datatype": "numeric",
+        "description": "convert string `s` to number; error if stripping leading and trailing white space does not yield a valid decimal number",
+        "example": "",
+        "name": "num",
+        "parameters": [
+            {
+                "description": "string to convert",
+                "name": "s",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "numeric | null",
+        "description": "strip leading white space, and interpret as much as possible of `s` as a number, but do not raise error",
+        "example": "",
+        "name": "num0",
+        "parameters": [
+            {
+                "description": "string to convert",
+                "name": "s",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "int",
+        "description": "number of variables in current model",
+        "name": "nvars",
+        "type": "constant"
+    },
+    {
+        "description": "select an objective to be optimized",
+        "name": "objective",
+        "type": "keyword"
+    },
+    {
+        "description": "set or display option values",
+        "name": "option",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "or",
+        "type": "keyword"
+    },
+    {
+        "datatype": "int",
+        "description": "ordinal position of member `e` in set for which it is dummy index",
+        "example": "",
+        "name": "ord",
+        "parameters": [
+            {
+                "description": "object",
+                "name": "e",
+                "type": "object"
+            },
+            {
+                "default": null,
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "int",
+        "description": "same as `ord`, but does not raise an error if `e` is not in `S`",
+        "example": "",
+        "name": "ord0",
+        "parameters": [
+            {
+                "description": "object",
+                "name": "e",
+                "type": "object"
+            },
+            {
+                "default": null,
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "OUT",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "out",
+        "type": "keyword"
+    },
+    {
+        "description": "decalre a parameter",
+        "name": "param",
+        "type": "declaration"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Poisson distribution.\n\n`density(x) = e^-lambda lambda^x / x!; x>=0`",
+        "example": "",
+        "name": "Poisson",
+        "parameters": [
+            {
+                "name": "lambda",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "numeric",
+        "description": "`x` rounded to `n` significant decimal digits",
+        "example": "",
+        "name": "precision",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            },
+            {
+                "description": "precision",
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "any",
+        "description": "previous member of set for which `e` is dummy index",
+        "example": "",
+        "name": "prev",
+        "parameters": [
+            {
+                "description": "dummy index...?",
+                "name": "e",
+                "type": "object"
+            },
+            {
+                "default": null,
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            },
+            {
+                "default": 1,
+                "description": "int",
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "any",
+        "description": "wrapping version of `prev`",
+        "example": "",
+        "name": "prevw",
+        "parameters": [
+            {
+                "description": "object",
+                "name": "e",
+                "type": "object"
+            },
+            {
+                "default": null,
+                "description": "set",
+                "name": "S",
+                "type": "Set"
+            },
+            {
+                "default": 1,
+                "description": "int",
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "print model entities and expressions unformatted",
+        "name": "print",
+        "type": "keyword"
+    },
+    {
+        "description": "print model entities and expressions formatted",
+        "name": "printf",
+        "type": "keyword"
+    },
+    {
+        "description": "define or switch to a named problem",
+        "name": "problem",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "prod",
+        "type": "keyword"
+    },
+    {
+        "description": "remove model entities",
+        "name": "purge",
+        "type": "keyword"
+    },
+    {
+        "description": "terminate AMPL",
+        "name": "quit",
+        "type": "keyword"
+    },
+    {
+        "description": "table take input from a data table",
+        "name": "read",
+        "type": "keyword"
+    },
+    {
+        "description": "change declaration of entity",
+        "name": "redeclare",
+        "type": "keyword"
+    },
+    {
+        "description": "reload dynamic function library",
+        "name": "reload",
+        "type": "keyword"
+    },
+    {
+        "description": "remove file",
+        "name": "remove",
+        "type": "keyword"
+    },
+    {
+        "description": "reset specified entities to their initial state",
+        "name": "reset",
+        "type": "keyword"
+    },
+    {
+        "description": "undo a drop command",
+        "name": "restore",
+        "type": "keyword"
+    },
+    {
+        "datatype": "numeric",
+        "description": "`x` rounded to n digits past decimal point",
+        "example": "",
+        "name": "round",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            },
+            {
+                "default": 0,
+                "description": "precision",
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "set",
+        "type": "declaration"
+    },
+    {
+        "description": "",
+        "name": "setof",
+        "type": "keyword"
+    },
+    {
+        "description": "temporary escape to operating system to run commands",
+        "name": "shell",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "shell_exitcode",
+        "type": "keyword"
+    },
+    {
+        "description": "define a function",
+        "name": "function",
+        "type": "declaration"
+    },
+    {
+        "description": "show names of model entities",
+        "name": "show",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "sine",
+        "example": "",
+        "name": "sin",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "returns the hyperbolic sine of `x`",
+        "example": "",
+        "name": "sinh",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "show expansion as seen by solver",
+        "name": "solexpand",
+        "type": "keyword"
+    },
+    {
+        "description": "import variable values as if from a solver",
+        "name": "solution",
+        "type": "keyword"
+    },
+    {
+        "description": "send current instance to a solver and retrieve solution",
+        "name": "solve",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "solve_exitcode",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "solve_message",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "solve_result",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "solve_result_num",
+        "type": "keyword"
+    },
+    {
+        "datatype": "string",
+        "description": "format arguments into a string c-style",
+        "example": "",
+        "name": "sprintf",
+        "parameters": [
+            {
+                "description": "string to format",
+                "name": "f",
+                "type": "string"
+            },
+            {
+                "description": "expressions to format into f",
+                "name": "...",
+                "type": "any"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "returns the square root of x",
+        "example": "display sqrt(10); # sqrt(10) = 3.16228",
+        "name": "sqrt",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "string",
+        "description": "substitute `repl` for the first occurrence of regular expression `re` in `s`",
+        "example": "",
+        "name": "sub",
+        "parameters": [
+            {
+                "description": "string to test",
+                "name": "s",
+                "type": "string"
+            },
+            {
+                "description": "regular expression",
+                "name": "re",
+                "type": "string"
+            },
+            {
+                "description": "replacement string",
+                "name": "repl",
+                "type": "string"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "subj to",
+        "type": "declaration"
+    },
+    {
+        "description": "",
+        "name": "s.t.",
+        "type": "declaration"
+    },
+    {
+        "description": "",
+        "name": "subject to",
+        "type": "declaration"
+    },
+    {
+        "description": "",
+        "name": "repeat",
+        "type": "keyword"
+    },
+    {
+        "datatype": "string",
+        "description": "n character substring of s starting at position m;\n if n omitted, rest of string",
+        "example": "",
+        "name": "substr",
+        "parameters": [
+            {
+                "description": "string to test",
+                "name": "s",
+                "type": "string"
+            },
+            {
+                "description": "starting position",
+                "name": "m",
+                "type": "int"
+            },
+            {
+                "default": "length(s) - m + 1",
+                "description": "length of substring (optional)",
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "suffix",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "sum",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "symbolic",
+        "type": "type"
+    },
+    {
+        "description": "",
+        "name": "symdiff",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "table",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "tangent",
+        "example": "tan(0) = 0, tan(pi/4) = 1, tan(pi/2) = undefined",
+        "name": "tan",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "hyperbolic tangent",
+        "example": "",
+        "name": "tanh",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "then",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "current unix timestamp in seconds",
+        "example": "",
+        "name": "time",
+        "parameters": [],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "`x` truncated to `n` digits past decimal point",
+        "example": "",
+        "name": "trunc",
+        "parameters": [
+            {
+                "description": "",
+                "name": "x",
+                "type": "numeric"
+            },
+            {
+                "default": 0,
+                "description": "precision",
+                "name": "n"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "description": "undo a fix command",
+        "name": "unfix",
+        "type": "keyword"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Uniform distribution. `density(x) = 1/(n-m), x in [m, n]`",
+        "example": "",
+        "name": "Uniform",
+        "parameters": [
+            {
+                "name": "m",
+                "type": "numeric"
+            },
+            {
+                "name": "n",
+                "type": "numeric"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "datatype": "float",
+        "description": "Returns a random value from a Uniform distribution. `density(x) = 1, x in [0, 1]`",
+        "example": "display Uniform01(); # Uniform01() = 0.690420",
+        "name": "Uniform01",
+        "parameters": [],
+        "type": "function"
+    },
+    {
+        "description": "",
+        "name": "union",
+        "type": "keyword"
+    },
+    {
+        "description": "unload dynamic function library",
+        "name": "unload",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "until",
+        "type": "keyword"
+    },
+    {
+        "description": "allow updating data",
+        "name": "update",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "var",
+        "type": "declaration"
+    },
+    {
+        "description": "",
+        "name": "while",
+        "type": "keyword"
+    },
+    {
+        "description": "",
+        "name": "within",
+        "type": "keyword"
+    },
+    {
+        "description": "table write data to a data table",
+        "name": "write",
+        "type": "keyword"
+    },
+    {
+        "description": "show dependencies among entities",
+        "name": "xref",
+        "type": "keyword"
+    }
+]

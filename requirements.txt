@@ -1,0 +1,5 @@
+attrs
+cattrs
+lsprotocol
+packaging
+pygls

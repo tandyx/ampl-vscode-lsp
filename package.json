@@ -1,0 +1,159 @@
+{
+    "name": "ampl-lsp",
+    "displayName": "AMPL LSP",
+    "description": "Linting support for python files using `ampl-lsp`.",
+    "version": "2022.0.0-dev",
+    "preview": true,
+    "serverInfo": {
+        "name": "AMPL LSP",
+        "module": "ampl-lsp"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/<my-github>/<my-extension-project>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/<my-github>/<my-extension-project>.git"
+    },
+    "bugs": {
+        "url": "https://github.com/<my-github>/<my-extension-project>/issues"
+    },
+    "galleryBanner": {
+        "color": "#1e415e",
+        "theme": "dark"
+    },
+    "keywords": [
+        "python",
+        "ampl-lsp"
+    ],
+    "engines": {
+        "vscode": "^1.78.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Linters",
+        "Formatters"
+    ],
+    "extensionDependencies": [
+        "ms-python.python"
+    ],
+    "activationEvents": [
+        "onLanguage:ampl"
+    ],
+    "main": "./dist/extension.js",
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "format-check": "prettier --check 'src/**/*.ts' 'build/**/*.yml' '.github/**/*.yml'",
+        "test": "node ./out/test/runTest.js",
+        "vsce-package": "vsce package -o ampl-lsp.vsix"
+    },
+    "contributes": {
+        "configuration": {
+            "properties": {
+                "ampl-lsp.args": {
+                    "default": [],
+                    "description": "Arguments passed in. Each argument is a separate item in the array.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "scope": "resource",
+                    "type": "array"
+                },
+                "ampl-lsp.path": {
+                    "default": [],
+                    "description": "When set to a path to ampl-lsp binary, extension will use that. NOTE: Using this option may slowdown server response time.",
+                    "scope": "resource",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "ampl-lsp.importStrategy": {
+                    "default": "useBundled",
+                    "description": "Defines where `ampl-lsp` is imported from. This setting may be ignored if `ampl-lsp.path` is set.",
+                    "enum": [
+                        "useBundled",
+                        "fromEnvironment"
+                    ],
+                    "enumDescriptions": [
+                        "Always use the bundled version of `ampl-lsp`.",
+                        "Use `ampl-lsp` from environment, fallback to bundled version only if `ampl-lsp` not available in the environment."
+                    ],
+                    "scope": "window",
+                    "type": "string"
+                },
+                "ampl-lsp.interpreter": {
+                    "default": [],
+                    "description": "When set to a path to python executable, extension will use that to launch the server and any subprocess.",
+                    "scope": "resource",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "ampl-lsp.showNotifications": {
+                    "default": "off",
+                    "description": "Controls when notifications are shown by this extension.",
+                    "enum": [
+                        "off",
+                        "onError",
+                        "onWarning",
+                        "always"
+                    ],
+                    "enumDescriptions": [
+                        "All notifications are turned off, any errors or warning are still available in the logs.",
+                        "Notifications are shown only in the case of an error.",
+                        "Notifications are shown for errors and warnings.",
+                        "Notifications are show for anything that the server chooses to show."
+                    ],
+                    "scope": "machine",
+                    "type": "string"
+                }
+            }
+        },
+        "commands": [
+            {
+                "title": "Restart Server",
+                "category": "AMPL LSP",
+                "command": "ampl-lsp.restart"
+            }
+        ],
+        "languages": [
+            {
+                "id": "ampl",
+                "extensions": [
+                    ".mod",
+                    ".dat",
+                    ".run"
+                ]
+            }
+        ]
+    },
+    "dependencies": {
+        "@vscode/python-extension": "^1.0.5",
+        "fs-extra": "^11.2.0",
+        "vscode-languageclient": "^9.0.1"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.4",
+        "@types/vscode": "1.91.0",
+        "@types/glob": "^8.1.0",
+        "@types/node": "20.x",
+        "@typescript-eslint/eslint-plugin": "^7.17.0",
+        "@typescript-eslint/parser": "^7.17.0",
+        "@vscode/test-electron": "^2.4.1",
+        "@vscode/vsce": "^2.31.1",
+        "glob": "^11.0.0",
+        "prettier": "^3.3.3",
+        "typescript": "^5.5.4",
+        "ts-loader": "^9.5.1",
+        "webpack": "^5.93.0",
+        "webpack-cli": "^5.1.4"
+    }
+}

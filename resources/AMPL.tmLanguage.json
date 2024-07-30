@@ -1,0 +1,219 @@
+{
+    "name": "AMPL",
+    "scopeName": "source.ampl",
+    "fileTypes": [
+        "mod",
+        "dat",
+        "run"
+    ],
+    "repository": {
+        "general": {
+            "patterns": [
+                {
+                    "include": "#linecomment"
+                },
+                {
+                    "include": "#blockcomment"
+                },
+                {
+                    "include": "#singlequotestring"
+                },
+                {
+                    "include": "#doublequotestring"
+                },
+                {
+                    "include": "#number"
+                },
+                {
+                    "include": "#genericfunction"
+                },
+                {
+                    "include": "#suffix"
+                },
+                {
+                    "include": "#constant"
+                },
+                {
+                    "include": "#keyword"
+                },
+                {
+                    "include": "#function"
+                },
+                {
+                    "include": "#declaration"
+                },
+                {
+                    "include": "#type"
+                },
+                {
+                    "include": "#classes"
+                },
+                {
+                    "include": "#operator"
+                },
+                {
+                    "include": "#pseudoconstant"
+                },
+                {
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+                    "name": "variable.other.ampl"
+                }
+            ]
+        },
+        "linecomment": {
+            "name": "comment.line.sharp.ampl",
+            "match": "(#.*)(?!\\[\\[).*$\\n?",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.comment.gms"
+                }
+            }
+        },
+        "blockcomment": {
+            "name": "comment.slashstar.ampl",
+            "begin": "/\\*",
+            "end": "\\*/",
+            "contentName": "comment.block.documentation.ampl"
+        },
+        "singlequotestring": {
+            "name": "string.quoted.single.ampl",
+            "begin": "'",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.ampl"
+                }
+            },
+            "end": "'",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.ampl"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "constant.character.escape.ampl",
+                    "match": "\\\\(a|b|f|n|r|t|v|\\?|0|\\\"|\\'|\\\\)"
+                },
+                {
+                    "name": "constant.language.ampl",
+                    "match": "\\%(c|d|e|f|g|i|s|[-+]?[0-9]*\\.?[0-9]+f)"
+                },
+                {
+                    "match": "%(\\w+%|\\d+)",
+                    "name": "entity.name.class.ampl"
+                }
+            ]
+        },
+        "doublequotestring": {
+            "name": "string.quoted.double.ampl",
+            "begin": "\"",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.ampl"
+                }
+            },
+            "end": "\"",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.ampl"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "constant.character.escape.ampl",
+                    "match": "\\\\(a|b|f|n|r|t|v|\\?|0|\\\"|\\'|\\\\)"
+                },
+                {
+                    "name": "constant.language.ampl",
+                    "match": "\\%(c|d|e|f|g|i|s|([-+]?[0-9]*\\.?[0-9]+f))"
+                },
+                {
+                    "match": "%(\\w+%|\\d+)",
+                    "name": "entity.name.class.ampl"
+                }
+            ]
+        },
+        "number": {
+            "name": "constant.numeric.ampl",
+            "match": "(?<![\\d.])\\b\\d+(\\.\\d+)?([eE]-?\\d+)?|\\.\\d+([eE]-?\\d+)?|(?i)([+-]?infinity)"
+        },
+        "suffix": {
+            "name": "variable.suffix.ampl",
+            "match": "^\\.(?:[as]?status|defeqn|defvar|exitcode|message|result|lb[012s]?|ub[012s]?|[ul]?rc|val|init0?|body|dinit0?|[ul]?dual|[ul]?slack)|(<<|>>)"
+        },
+        "operator": {
+            "name": "keyword.operator.ampl",
+            "match": "(\\+|-|\\*|\\/|\\*\\*|=|<=?|>=?|==|\\||\\^|<|>|!|mod|\\.\\.|:=|&|!=|:|/)"
+        },
+        "genericfunction": {
+            "name": "entity.name.function.ampl",
+            "match": "\\b(?![if|and|or])[a-zA-Z_][a-zA-Z0-9_]*(?=\\s*\\()"
+        },
+        "pseudoconstant": {
+            "name": "constant.language.ampl",
+            "match": "\\b(null|true|false)\\b"
+        },
+        "argumentcurly": {
+            "begin": "\\{",
+            "patterns": [
+                {
+                    "include": "#general"
+                },
+                {
+                    "name": "meta.function-call.arguments.ampl",
+                    "match": "."
+                }
+            ],
+            "end": "\\}"
+        },
+        "argumentbracket": {
+            "begin": "\\[",
+            "patterns": [
+                {
+                    "include": "#general"
+                },
+                {
+                    "name": "meta.function-call.arguments.ampl",
+                    "match": "\\w"
+                }
+            ],
+            "end": "\\]"
+        },
+        "constant": {
+            "match": "\\b((_ampl_elapsed_time|_varname|_var|_ampl_system_time|_ampl_time|_ampl_user_time|_CONS|_con|_ENVS|_FUNCS|_nccons|_conname|_ncons|_nobjs|_objname|_OBJS|_obj|_PARS|_PROBS|_scvar|_SETS|_shell_elapsed_time|_shell_system_time|_shell_time|_shell_user_time|_snbvars|_snccons|_snivars|_snlcc|_snlnc|_snnlcc|_snnlcons|_snnlnc|_snnlobjs|_snnlv|_snzcons|_snzobjs|_solve_elapsed_time|_solve_system_time|_solve_time|_solve_user_time|_total_shell_elapsed_time|_total_shell_system_time|_total_shell_time|_total_shell_user_time|_total_solve_elapsed_time|_total_solve_system_time|_total_solve_time|_total_solve_user_time|_nvars|nvars)\\b)",
+            "name": "constant.language.ampl"
+        },
+        "keyword": {
+            "match": "\\b((to|from|obj|all|and|break|by|call|cd|check|close|commands|complements|contains|continue|cross|Current|data|default|net_in|net_out|to_come|delete|diff|difference|dimen|display|csvdisplay|_display|div|drop|else|end|environ|exists|exit|expand|fix|for|forall|if|IN|in|include|ordered by|circular by|Initial|initial|INOUT|inter|intersect|intersection|less|let|load|LOCAL|local|logical|model|not|notin|objective|option|or|OUT|out|print|printf|problem|prod|purge|quit|read|redeclare|reload|remove|reset|restore|setof|shell|shell_exitcode|show|solexpand|solution|solve|solve_exitcode|solve_message|solve_result|solve_result_num|repeat|suffix|sum|symdiff|table|then|unfix|union|unload|until|update|while|within|write|xref)\\b)",
+            "name": "keyword.control.ampl"
+        },
+        "function": {
+            "match": "\\b((abs|acos|acosh|alias|arity|asin|asinh|atan|atan2|atanh|Beta|card|Cauchy|ceil|char|cos|ctime|exp|Exponential|first|floor|Gamma|gsub|ichar|indexarity|Irand224|last|length|log|log10|match|max|member|min|next|nextw|Normal|Normal01|num|num0|ord|ord0|Poisson|precision|prev|prevw|round|sin|sinh|sprintf|sqrt|sub|substr|tan|tanh|time|trunc|Uniform|Uniform01)\\b)",
+            "name": "entity.name.function.ampl"
+        },
+        "declaration": {
+            "match": "\\b((arc|maximize|minimize|node|param|set|function|subj to|s.t.|subject to|var)\\b)|s\\.t\\.",
+            "name": "keyword.declaration.ampl"
+        },
+        "type": {
+            "match": "\\b((binary|integer|symbolic)\\b)",
+            "name": "storage.type.ampl"
+        },
+        "classes": {
+            "match": "\\b((Set[string]|Set|float|Set[object]|int|object|numeric|string|any|numeric | null)\\b)",
+            "name": "entity.name.class.ampl"
+        }
+    },
+    "patterns": [
+        {
+            "include": "#general"
+        },
+        {
+            "include": "#argumentcurly"
+        },
+        {
+            "include": "#argumentbracket"
+        }
+    ],
+    "uuid": "7224acbd-b663-4ec3-8a02-3e6cf1680446"
+}
