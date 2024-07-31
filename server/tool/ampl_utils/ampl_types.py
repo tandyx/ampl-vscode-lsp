@@ -92,9 +92,14 @@ class DeclaredType(TypeBase):
 class Set(DeclaredType):
     """set of array in AMPL"""
 
+    def 
 
-class Param(DeclaredType):
-    """"""
+
+class Objective(DeclaredType):
+    """the object of the model, can be maximized or minimized"""
+    
+class Constraint(DeclaredType):
+    """a constraint in the model"""
 
 
 # class Variable:
