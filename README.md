@@ -1,5 +1,7 @@
 # ampl language server & vscode extension
 
+this is wip
+
 ## building
 
 ```bash

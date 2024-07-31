@@ -7,8 +7,8 @@ import re
 import sys
 import typing as t
 
-import utils
 import ampl_utils
+import utils
 
 utils.update_sys_path(
     os.fspath(pathlib.Path(__file__).parent.parent / "libs"),

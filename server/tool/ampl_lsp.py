@@ -10,7 +10,6 @@ import typing as t
 import ampl_utils
 import utils
 
-
 utils.update_sys_path(
     os.fspath(pathlib.Path(__file__).parent.parent / "libs"),
     os.getenv("LS_IMPORT_STRATEGY", "useBundled"),

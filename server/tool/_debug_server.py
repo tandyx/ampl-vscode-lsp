@@ -7,7 +7,6 @@ import pathlib
 import runpy
 import sys
 
-
 # Ensure debugger is loaded before we load anything else, to debug initialization.
 debugger_path = os.getenv("DEBUGPY_PATH", None)
 if debugger_path:
